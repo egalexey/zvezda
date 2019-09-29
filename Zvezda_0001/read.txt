@@ -1,0 +1,6 @@
+void Forward(  byte speed,     int  time);
+void Backward( byte speed,     int  time);
+void TurnRight(byte speed,     int  time);
+void TurnLeft( byte speed,     int  time);
+void ArcTurn(  byte LeftSpeed, byte RightSpeed, int Time);
+void Blink(    int  Time);

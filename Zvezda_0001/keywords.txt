@@ -1,0 +1,19 @@
+######################################## Syntax Coloring Map For Zvezda ######################################
+######################################## Datatypes (KEYWORD1) ####################################### 
+Zvezda	KEYWORD1 
+######################################## Methods and Functions (KEYWORD2)####################################### 
+Forward	        KEYWORD2 
+Backward	    KEYWORD2
+TurnRight	    KEYWORD2
+TurnLeft	    KEYWORD2
+DualDirection   KEYWORD2
+MixLed	        KEYWORD2
+TwiceLed	    KEYWORD2
+Read_Tact1      KEYWORD2
+UserLed_Red	    KEYWORD2
+UserLed_Green	KEYWORD2
+UserLed_Yellow	KEYWORD2
+SaveToMemory	KEYWORD2
+RepeatMemory	KEYWORD2
+######################################## Constants (LITERAL1) #######################################
+
