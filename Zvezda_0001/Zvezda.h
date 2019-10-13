@@ -9,8 +9,7 @@ class ZvezdaClass{
     void Read_Tact1(); 
     // движение робота
     void Mooving(int leftSpeed, int rightSpeed);
-    void TurnRight(int speed, int time);
-    void TurnLeft(int speed, int time);
+    void InertialMooving(int _leftSpeed, int _rightSpeed);
   
     int VoltageIn();
     int Trimpot(); 
