@@ -15,9 +15,10 @@
 #define UL3 17 //RX Led
 #define UL4 30 //TX Led
 
-String ZvezdaReadString;
-//
-//byte speed;
+String  ZvezdaReadString;
+int     leftSpeedCur;
+int     rightSpeedCur;
+
 ZvezdaClass::ZvezdaClass() {
   pinMode(Tac1,    INPUT);
   pinMode(Tac2,    INPUT);
@@ -33,6 +34,9 @@ ZvezdaClass::ZvezdaClass() {
   digitalWrite(14, HIGH);
   digitalWrite(15, HIGH);
   digitalWrite(16, HIGH);
+
+  leftSpeedCur = 0;
+  rightSpeedCur = 0;
 }
 
 void ZvezdaClass::Setup() {
@@ -42,8 +46,8 @@ void ZvezdaClass::Setup() {
 
 void ZvezdaClass::Mooving(int _leftSpeed, int _rightSpeed) {
 
-  float leftSpeed  = abs(constrain(_leftSpeed,  -100, 100)) * 2.55;
-  float rightSpeed = abs(constrain(_rightSpeed, -100, 100)) * 2.55;
+  float leftSpeed  = constrain(_leftSpeed,  -100, 100) * 2.55;
+  float rightSpeed = constrain(_rightSpeed, -100, 100) * 2.55;
 
   if (_leftSpeed > 0) {
     digitalWrite(M1_Pwm2, LOW);
@@ -62,15 +66,19 @@ void ZvezdaClass::Mooving(int _leftSpeed, int _rightSpeed) {
   }
 }
 
-void ZvezdaClass::TurnRight(int speed, int Time) {
-  Mooving(speed, -speed);
-  delay(Time);
+void ZvezdaClass::InertialMooving(int _leftSpeed, int _rightSpeed) {
+  _leftSpeed  = constrain(_leftSpeed*5  - leftSpeedCur*4,  -100, 100);
+  _rightSpeed = constrain(_rightSpeed*5 - rightSpeedCur*4, -100, 100);
+
+  leftSpeedCur  = leftSpeedCur*0.9 +  _leftSpeed*0.1;
+  rightSpeedCur = rightSpeedCur*0.9 + _rightSpeed*0.1;
+
+  Mooving(leftSpeedCur, rightSpeedCur);
 }
 
-void ZvezdaClass::TurnLeft(int speed, int Time) {
-  Mooving(-speed, speed);
-  delay(Time);
-}
+
+
+
 void ZvezdaClass::Read_Tact1() {
   return digitalRead(Tac1);
 }
